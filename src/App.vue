@@ -19,6 +19,8 @@ import SearchBoxVue from './components/SearchBox.vue';
 import TotalValueVue from './components/TotalValue.vue';
 import UserBoxVue from './components/UserBox.vue';
 
+import { eventBus } from './main.js';
+
 export default {
   name: 'app',
   components: {
@@ -38,12 +40,16 @@ export default {
           name: 'APPLE',
           quantity: 1500,
           date: '2020-12-06',
+          purchasedPrice: 100,
+          currentPrice: 125,
         },
         {
           symbol: 'TSLA',
           name: 'TESLA',
           quantity: 2000,
           date: '2020-03-04',
+          purchasedPrice: 500,
+          currentPrice: 700,
         },
       ],
     };
@@ -52,22 +58,61 @@ export default {
     getStockQuote(symbol) {
       let url = `https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${process.env.VUE_APP_IEX_API_TOKEN}`;
 
-      fetch(url)
+      return fetch(url)
         .then((res) => {
           return res.json();
         })
         .then((data) => {
-          console.log(data.close);
+          return data.close;
         });
+    },
+
+    updateStockList(stockArray, newStockObject) {
+      this.getStockQuote(newStockObject.symbol).then((currentPrice) => {
+        newStockObject.currentPrice = currentPrice;
+        const index = stockArray.findIndex(
+          (stock) => stock.symbol === newStockObject.symbol
+        );
+
+        if (index === -1) {
+          stockArray.push(newStockObject);
+        } else {
+          stockArray[index].quantity += newStockObject.quantity;
+        }
+      });
     },
   },
   mounted() {
-    this.getStockQuote('AAPL');
+    eventBus.$on('add-stock-to-user-list', (selectedStock) => {
+      this.updateStockList(this.listOfUserHeldStocks, selectedStock);
+    });
   },
   computed: {
-    totalValue() {},
+    totalValue() {
+      let totalValueOfStock = 0;
+      for (let index = 0; index < this.listOfUserHeldStocks.length; index++) {
+        let priceDifference =
+          this.listOfUserHeldStocks[index].currentPrice -
+          this.listOfUserHeldStocks[index].purchasedPrice;
+        let valueOfStock =
+          priceDifference * this.listOfUserHeldStocks[index].quantity;
+        totalValueOfStock += valueOfStock;
+      }
+      return totalValueOfStock;
+    },
   },
+  // for loop for each stock
+  // create a total value variable for the For loop to update
+  // get stock quote, for last price
+  // take current price and subtract purchase price = sum
+  // multiply SUM by number of stock
 };
 </script>
 
-<style></style>
+<style>
+.stock-table {
+  margin-left: 20px;
+  display: grid;
+  grid-template-columns: 100px 400px 100px 200px 200px 200px 200px;
+}
+</style>
