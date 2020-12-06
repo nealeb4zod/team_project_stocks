@@ -32,13 +32,38 @@ export default {
   data() {
     return {
       userName: '',
-      listOfUserHeldStocks: [],
+      listOfUserHeldStocks: [
+        {
+          symbol: 'AAPL',
+          name: 'APPLE',
+          quantity: 1500,
+          date: '2020-12-06',
+        },
+        {
+          symbol: 'TSLA',
+          name: 'TESLA',
+          quantity: 2000,
+          date: '2020-03-04',
+        },
+      ],
     };
   },
   methods: {
-    getStockInfo() {},
+    getStockQuote(symbol) {
+      let url = `https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${process.env.VUE_APP_IEX_API_TOKEN}`;
+
+      fetch(url)
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          console.log(data.close);
+        });
+    },
   },
-  mounted() {},
+  mounted() {
+    this.getStockQuote('AAPL');
+  },
   computed: {
     totalValue() {},
   },
