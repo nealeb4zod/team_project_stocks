@@ -19,6 +19,8 @@ import SearchBoxVue from './components/SearchBox.vue';
 import TotalValueVue from './components/TotalValue.vue';
 import UserBoxVue from './components/UserBox.vue';
 
+import { eventBus } from './main.js';
+
 export default {
   name: 'app',
   components: {
@@ -79,9 +81,23 @@ export default {
       console.log(totalValue);
       return totalValue;
     },
+    updateStockList(stockArray, newStockObject) {
+      const index = stockArray.findIndex(
+        (stock) => stock.symbol === newStockObject.symbol
+      );
+
+      if (index === -1) {
+        stockArray.push(newStockObject);
+      } else {
+        stockArray[index].quantity += newStockObject.quantity;
+      }
+    },
   },
   mounted() {
     this.totalValueOfStock = this.totalValue();
+    eventBus.$on('add-stock-to-user-list', (selectedStock) => {
+      this.updateStockList(this.listOfUserHeldStocks, selectedStock);
+    });
   },
   computed: {},
   // for loop for each stock
