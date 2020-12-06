@@ -1,6 +1,10 @@
 <template>
   <div>
-    <individual-stock></individual-stock>
+    <individual-stock
+      v-for="(stock, index) in listOfUserHeldStocks"
+      :key="index"
+      :stock="stock"
+    ></individual-stock>
   </div>
 </template>
 
