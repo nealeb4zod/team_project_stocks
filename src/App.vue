@@ -38,35 +38,57 @@ export default {
           name: 'APPLE',
           quantity: 1500,
           date: '2020-12-06',
+          purchasedPrice: 100,
         },
         {
           symbol: 'TSLA',
           name: 'TESLA',
           quantity: 2000,
           date: '2020-03-04',
+          purchasedPrice: 500,
         },
       ],
+      totalValueOfStock: null,
     };
   },
   methods: {
     getStockQuote(symbol) {
       let url = `https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${process.env.VUE_APP_IEX_API_TOKEN}`;
 
-      fetch(url)
+      return fetch(url)
         .then((res) => {
           return res.json();
         })
         .then((data) => {
-          console.log(data.close);
+          return data.close;
         });
+    },
+    async totalValue() {
+      let totalValue = 0;
+      for (let index = 0; index < this.listOfUserHeldStocks.length; index++) {
+        let closingPrice = await this.getStockQuote(
+          this.listOfUserHeldStocks[index].symbol
+        );
+        let priceDifference =
+          closingPrice - this.listOfUserHeldStocks[index].purchasedPrice;
+        let valueOfStock =
+          priceDifference * this.listOfUserHeldStocks[index].quantity;
+        console.log(valueOfStock);
+        totalValue += valueOfStock;
+      }
+      console.log(totalValue);
+      return totalValue;
     },
   },
   mounted() {
-    this.getStockQuote('AAPL');
+    this.totalValueOfStock = this.totalValue();
   },
-  computed: {
-    totalValue() {},
-  },
+  computed: {},
+  // for loop for each stock
+  // create a total value variable for the For loop to update
+  // get stock quote, for last price
+  // take current price and subtract purchase price = sum
+  // multiply SUM by number of stock
 };
 </script>
 
