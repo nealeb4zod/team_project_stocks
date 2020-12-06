@@ -1,4 +1,9 @@
-<template></template>
+<template>
+  <div id="header">
+    <img src="../assets/logo.png" alt="" />
+    <h1>Investabily</h1>
+  </div>
+</template>
 
 <script>
 export default {
@@ -6,4 +11,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+#header {
+  display: flex;
+  flex-flow: row;
+}
+</style>
