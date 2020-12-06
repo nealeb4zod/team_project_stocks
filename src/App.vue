@@ -41,6 +41,7 @@ export default {
           quantity: 1500,
           date: '2020-12-06',
           purchasedPrice: 100,
+          currentPrice: 125,
         },
         {
           symbol: 'TSLA',
@@ -48,9 +49,9 @@ export default {
           quantity: 2000,
           date: '2020-03-04',
           purchasedPrice: 500,
+          currentPrice: 700,
         },
       ],
-      totalValueOfStock: null,
     };
   },
   methods: {
@@ -65,41 +66,41 @@ export default {
           return data.close;
         });
     },
-    async totalValue() {
-      let totalValue = 0;
-      for (let index = 0; index < this.listOfUserHeldStocks.length; index++) {
-        let closingPrice = await this.getStockQuote(
-          this.listOfUserHeldStocks[index].symbol
-        );
-        let priceDifference =
-          closingPrice - this.listOfUserHeldStocks[index].purchasedPrice;
-        let valueOfStock =
-          priceDifference * this.listOfUserHeldStocks[index].quantity;
-        console.log(valueOfStock);
-        totalValue += valueOfStock;
-      }
-      console.log(totalValue);
-      return totalValue;
-    },
-    updateStockList(stockArray, newStockObject) {
-      const index = stockArray.findIndex(
-        (stock) => stock.symbol === newStockObject.symbol
-      );
 
-      if (index === -1) {
-        stockArray.push(newStockObject);
-      } else {
-        stockArray[index].quantity += newStockObject.quantity;
-      }
+    updateStockList(stockArray, newStockObject) {
+      this.getStockQuote(newStockObject.symbol).then((currentPrice) => {
+        newStockObject.currentPrice = currentPrice;
+        const index = stockArray.findIndex(
+          (stock) => stock.symbol === newStockObject.symbol
+        );
+
+        if (index === -1) {
+          stockArray.push(newStockObject);
+        } else {
+          stockArray[index].quantity += newStockObject.quantity;
+        }
+      });
     },
   },
   mounted() {
-    this.totalValueOfStock = this.totalValue();
     eventBus.$on('add-stock-to-user-list', (selectedStock) => {
       this.updateStockList(this.listOfUserHeldStocks, selectedStock);
     });
   },
-  computed: {},
+  computed: {
+    totalValue() {
+      let totalValueOfStock = 0;
+      for (let index = 0; index < this.listOfUserHeldStocks.length; index++) {
+        let priceDifference =
+          this.listOfUserHeldStocks[index].currentPrice -
+          this.listOfUserHeldStocks[index].purchasedPrice;
+        let valueOfStock =
+          priceDifference * this.listOfUserHeldStocks[index].quantity;
+        totalValueOfStock += valueOfStock;
+      }
+      return totalValueOfStock;
+    },
+  },
   // for loop for each stock
   // create a total value variable for the For loop to update
   // get stock quote, for last price
@@ -108,4 +109,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.stock-table {
+  margin-left: 20px;
+  display: grid;
+  grid-template-columns: 100px 400px 100px 200px 200px 200px 200px;
+}
+</style>
