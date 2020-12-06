@@ -1,44 +1,37 @@
 <template>
   <div id="container">
+<highcharts class="stock" :constructor-type="stockChart" :options="stockOptions"></highcharts>
   </div>
 </template>
 
 <script>
-  // document.addEventListener('DOM')
-// import { Line } from 'vue-chartsjs'
-export default {
-  // extends: Line,
-  // props: {
-    // The data for the graph
-    // chartData: {
-    //   type: Array,
-    //   required: false
-    // },
-    // The labels for the graphs
-    // chartLabels: {
-    //   type: Array,
-    //   required: true
-    // },
-    // data(){
-    //   return {
-      // fixed settings for each of the graphs: scale, axes (gridlines or not), legend
-    //     options: {
-          // what we want for the graph
-    //     }
-    //   }
-    // }
 
-  
+export default {
   name: 'individual-stock-graph',
+  // props: ['options'],
+  data () {
+    return {
+      stockOptions: {
+        rangeSelector: {
+          selected: 1
+        },
+        title: {
+          text: 'AAPL Stock Price'
+        },
+        series: [{
+          symbol: 'AAPL',
+          data: [10, 20, 10, 23, 65, 121, 44, 66, 98, 30, 32, 56, 25, 12, 53],
+          pointStart: '2019-12-06',
+          pointInterval: 1000 * 3600 * 24,
+          tooltip: {
+            valueDecimals: 2
+          }
+        }]
+      }
+    }
+  },
+
   mounted() {
-    // this.renderChart({
-    //   labels: this.chartLabels,
-    //   datasets: [
-    //     {
-              // data: this.chartData
-    //     }
-    //   ]
-    // }, this.options)
   }
 };
 </script>
