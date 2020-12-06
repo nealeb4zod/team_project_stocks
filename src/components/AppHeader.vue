@@ -1,7 +1,7 @@
 <template>
   <div id="header">
     <img src="../assets/logo.png" alt="" />
-    <h1>Investabily</h1>
+    <h1>Investably</h1>
   </div>
 </template>
 
