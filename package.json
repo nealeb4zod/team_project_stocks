@@ -9,10 +9,13 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
+    "chart.js": "^2.9.4",
+    "chartjs": "^0.3.24",
     "core-js": "^3.6.5",
     "dotenv": "^8.2.0",
     "vue": "^2.6.11",
-    "vue-autosuggest": "^2.2.0"
+    "vue-autosuggest": "^2.2.0",
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
