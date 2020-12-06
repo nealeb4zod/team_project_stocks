@@ -18,6 +18,7 @@ import ListOfStocksVue from './components/ListOfStocks.vue';
 import SearchBoxVue from './components/SearchBox.vue';
 import TotalValueVue from './components/TotalValue.vue';
 import UserBoxVue from './components/UserBox.vue';
+// import HighchartsVue from 'highcharts-vue';
 
 export default {
   name: 'app',

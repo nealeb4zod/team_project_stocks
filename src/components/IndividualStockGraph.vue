@@ -1,8 +1,10 @@
 <template>
-
+  <div id="container">
+  </div>
 </template>
 
 <script>
+  // document.addEventListener('DOM')
 // import { Line } from 'vue-chartsjs'
 export default {
   // extends: Line,
