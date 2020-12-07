@@ -36,4 +36,9 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.stock {
+  display: noflex;
+  width: 70%;
+  margin: 0 auto
+}</style>
