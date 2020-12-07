@@ -1,21 +1,30 @@
 <template>
   <div id="container">
-<highcharts class="stock" :constructor-type="stockChart" :options="stockOptions"></highcharts>
+    <highcharts class="stock" :constructor-type="stockChart" :options="stockOptions">
+      
+    </highcharts>
   </div>
 </template>
 
 <script>
+// needed imports to make the page responsive
+import { eventBus } from '@/main.js'
+// import StockService from '@/services/StockService.js'
 
 export default {
   name: 'individual-stock-graph',
+  props: ['stock'],
   data () {
     return {
+      // title: this.stock.symbol,
+      // closeValues: [],
+     
       stockOptions: {
         rangeSelector: {
           selected: 1
         },
         title: {
-          text: 'AAPL Stock Price'
+          text: this.stock.name
         },
         yAxis: {
           title: {
@@ -23,24 +32,43 @@ export default {
           }
         },
         xAxis: {
-          accessibility: {
-            rangeDescription: 'Range: {something to go here}'
+          title: {
+            text: 'Working days from today'
           }
         },
         series: [{
-          symbol: 'AAPL',
-          data: [10, 20, 10, 23, 65, 121, 44, 66, 98, 30, 32, 56, 25, 12, 53],
-          // pointStart: '2019-12-06',
-          pointInterval: 1000 * 3600 * 24,
+          symbol: this.stock.symbol,
+          data: [],
+          pointStart: -18,
+          pointInterval: 1,
           tooltip: {
-            valueDecimals: 2
+            valueDecimals: 1
           }
         }]
+        
       }
     }
   },
 
   mounted() {
+    this.getStockQuote(this.stock.symbol)
+    
+  },
+  methods: {
+    getStockQuote(symbol) {
+      let url = `https://cloud.iexapis.com/stable/stock/${symbol}/chart/1m?token=${process.env.VUE_APP_IEX_API_TOKEN}`;
+
+      return fetch(url)
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          this.stockOptions.series[0].data = data.map((closeValue) =>{
+            return closeValue.close;
+
+          })
+        });
+    },
   }
 };
 </script>

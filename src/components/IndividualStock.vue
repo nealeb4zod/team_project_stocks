@@ -23,7 +23,7 @@
         {{ stockValue }}
       </div>
     </div>
-    <individual-stock-graph></individual-stock-graph>
+    <individual-stock-graph :stock='stock'></individual-stock-graph>
   </div>
 </template>
 
