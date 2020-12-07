@@ -20,6 +20,7 @@ import TotalValueVue from './components/TotalValue.vue';
 import UserBoxVue from './components/UserBox.vue';
 
 import { eventBus } from './main.js';
+import StocksService from './services/StocksService';
 
 export default {
   name: 'app',
@@ -34,27 +35,15 @@ export default {
   data() {
     return {
       userName: '',
-      listOfUserHeldStocks: [
-        {
-          symbol: 'AAPL',
-          name: 'APPLE',
-          quantity: 1500,
-          date: '2020-12-06',
-          purchasedPrice: 100,
-          currentPrice: 125,
-        },
-        {
-          symbol: 'TSLA',
-          name: 'TESLA',
-          quantity: 2000,
-          date: '2020-03-04',
-          purchasedPrice: 500,
-          currentPrice: 700,
-        },
-      ],
+      listOfUserHeldStocks: [],
     };
   },
   methods: {
+    fetchStocks() {
+      StocksService.getStocks().then(
+        (stocks) => (this.listOfUserHeldStocks = stocks)
+      );
+    },
     getStockQuote(symbol) {
       let url = `https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${process.env.VUE_APP_IEX_API_TOKEN}`;
 
@@ -66,7 +55,6 @@ export default {
           return data.close;
         });
     },
-
     updateStockList(stockArray, newStockObject) {
       this.getStockQuote(newStockObject.symbol).then((currentPrice) => {
         newStockObject.currentPrice = currentPrice;
@@ -83,6 +71,7 @@ export default {
     },
   },
   mounted() {
+    this.fetchStocks();
     eventBus.$on('add-stock-to-user-list', (selectedStock) => {
       this.updateStockList(this.listOfUserHeldStocks, selectedStock);
     });
