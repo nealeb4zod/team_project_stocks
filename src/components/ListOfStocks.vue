@@ -23,6 +23,7 @@
         Stock Value:
       </div>
     </div>
+
     <individual-stock
       v-for="(stock, index) in listOfUserHeldStocks"
       :key="index"
@@ -40,6 +41,11 @@ export default {
   components: {
     'individual-stock': IndividualStockVue,
   },
+  data() {
+    return{
+      blah: true
+    }
+  }
 };
 </script>
 

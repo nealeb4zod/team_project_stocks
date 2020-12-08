@@ -8,7 +8,7 @@
       <graph-total-value></graph-total-value>
       <search-box :userName="userName"></search-box>
       <list-of-stocks
-        :listOfUserHeldStocks="listOfUserHeldStocks"
+        :listOfUserHeldStocks="listOfUserHeldStocks" :selectedStock="selectedStock"
       ></list-of-stocks>
     </div>
   </div>
@@ -41,7 +41,7 @@ export default {
     return {
       userList: [],
       userName: '',
-      listOfUserHeldStocks: [],
+      listOfUserHeldStocks: []
     };
   },
   methods: {
@@ -79,6 +79,7 @@ export default {
       StocksService.postStock(selectedStock).then((res) => {});
       this.updateStockList(this.listOfUserHeldStocks, selectedStock);
     });
+
     eventBus.$on('login-user', (selectedUser) => {
       this.userName = selectedUser;
       this.fetchStocks(this.userName);
