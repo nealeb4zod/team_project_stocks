@@ -95,6 +95,6 @@ export default {
 .stock-table {
   margin-left: 20px;
   display: grid;
-  grid-template-columns: 100px 400px 100px 200px 200px 200px 200px;
+  grid-template-columns: 100px 200px 100px 200px 200px 200px 200px 200px;
 }
 </style>

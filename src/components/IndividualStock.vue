@@ -1,27 +1,29 @@
 <template>
-  <div class="stock-table">
-    <div>
-      {{ stock.symbol }}
+  <div>
+    <div class="stock-table">
+      <div>
+        {{ stock.symbol }}
+      </div>
+      <div>
+        {{ stock.name }}
+      </div>
+      <div>
+        {{ stock.quantity }}
+      </div>
+      <div>
+        {{ stock.purchasedPrice }}
+      </div>
+      <div>
+        {{ stock.date }}
+      </div>
+      <div>
+        {{ stock.currentPrice }}
+      </div>
+      <div>
+        {{ stockValue }}
+      </div>
     </div>
-    <div>
-      {{ stock.name }}
-    </div>
-    <div>
-      {{ stock.quantity }}
-    </div>
-    <div>
-      {{ stock.purchasedPrice }}
-    </div>
-    <div>
-      {{ stock.date }}
-    </div>
-    <div>
-      {{ stock.currentPrice }}
-    </div>
-    <div>
-      {{ stockValue }}
-    </div>
-    <individual-stock-graph></individual-stock-graph>
+    <individual-stock-graph :stock='stock'></individual-stock-graph>
   </div>
 </template>
 
@@ -43,4 +45,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>
