@@ -23,11 +23,11 @@
         Stock Value:
       </div>
     </div>
+
     <individual-stock
       v-for="(stock, index) in listOfUserHeldStocks"
       :key="index"
       :stock="stock"
-      :selectedStock="selectedStock"
     ></individual-stock>
   </div>
 </template>
@@ -37,10 +37,15 @@ import IndividualStockVue from './IndividualStock.vue';
 
 export default {
   name: 'list-of-stocks',
-  props: ['listOfUserHeldStocks', 'selectedStock'],
+  props: ['listOfUserHeldStocks'],
   components: {
     'individual-stock': IndividualStockVue,
   },
+  data() {
+    return{
+      blah: true
+    }
+  }
 };
 </script>
 

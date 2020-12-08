@@ -35,8 +35,7 @@ export default {
   data() {
     return {
       userName: '',
-      listOfUserHeldStocks: [],
-      selectedStock: null
+      listOfUserHeldStocks: []
     };
   },
   methods: {
@@ -73,9 +72,9 @@ export default {
       StocksService.postStock(selectedStock).then((res) => {});
       this.updateStockList(this.listOfUserHeldStocks, selectedStock);
     });
-    eventBus.$on('stock-selected', (stock) => {
-      this.selectedStock = stock
-    });
+    // eventBus.$on('stock-selected', (stock) => {
+    //   this.selectedStock = stock
+    // });
   },
   computed: {
     totalValue() {
