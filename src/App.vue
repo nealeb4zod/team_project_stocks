@@ -58,14 +58,10 @@ export default {
       });
     },
     getStockQuote(symbol) {
-      let url = `https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${process.env.VUE_APP_IEX_API_TOKEN}`;
-      return fetch(url)
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          return data.latestPrice;
-        });
+      let url = `http://localhost:3000/iex-data/quote/${symbol}`;
+      return fetch(url).then((res) => {
+        return res.json();
+      });
     },
     updateStockList(stockArray, newStockObject) {
       this.getStockQuote(newStockObject.symbol).then((currentPrice) => {
