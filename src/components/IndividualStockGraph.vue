@@ -60,9 +60,7 @@ export default {
           return res.json();
         })
         .then((data) => {
-          this.stockOptions.series[0].data = data.map(
-            (closeValue) => closeValue
-          );
+          this.stockOptions.series[0].data = [...data];
         });
     },
   },
