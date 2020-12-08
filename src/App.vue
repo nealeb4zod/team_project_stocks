@@ -20,6 +20,7 @@ import TotalValueVue from './components/TotalValue.vue';
 import UserBoxVue from './components/UserBox.vue';
 
 import { eventBus } from './main.js';
+import StocksService from './services/StocksService';
 
 export default {
   name: 'app',
@@ -34,56 +35,41 @@ export default {
   data() {
     return {
       userName: '',
-      listOfUserHeldStocks: [
-        {
-          symbol: 'AAPL',
-          name: 'APPLE',
-          quantity: 1500,
-          date: '2020-12-06',
-          purchasedPrice: 100,
-          currentPrice: 125,
-        },
-        {
-          symbol: 'TSLA',
-          name: 'TESLA',
-          quantity: 2000,
-          date: '2020-03-04',
-          purchasedPrice: 500,
-          currentPrice: 700,
-        },
-      ],
+      listOfUserHeldStocks: [],
     };
   },
   methods: {
+    fetchStocks() {
+      StocksService.getStocks().then((stocks) =>
+        stocks.forEach((stock) => {
+          this.updateStockList(this.listOfUserHeldStocks, stock);
+        })
+      );
+    },
     getStockQuote(symbol) {
       let url = `https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${process.env.VUE_APP_IEX_API_TOKEN}`;
-
       return fetch(url)
         .then((res) => {
           return res.json();
         })
         .then((data) => {
-          return data.close;
+          return data.latestPrice;
         });
     },
-
     updateStockList(stockArray, newStockObject) {
       this.getStockQuote(newStockObject.symbol).then((currentPrice) => {
-        newStockObject.currentPrice = currentPrice;
-        const index = stockArray.findIndex(
-          (stock) => stock.symbol === newStockObject.symbol
-        );
-
-        if (index === -1) {
-          stockArray.push(newStockObject);
-        } else {
-          stockArray[index].quantity += newStockObject.quantity;
+        if (currentPrice === null) {
+          currentPrice = 'Null';
         }
+        newStockObject.currentPrice = currentPrice;
+        stockArray.push(newStockObject);
       });
     },
   },
   mounted() {
+    this.fetchStocks();
     eventBus.$on('add-stock-to-user-list', (selectedStock) => {
+      StocksService.postStock(selectedStock).then((res) => {});
       this.updateStockList(this.listOfUserHeldStocks, selectedStock);
     });
   },
@@ -101,11 +87,6 @@ export default {
       return totalValueOfStock;
     },
   },
-  // for loop for each stock
-  // create a total value variable for the For loop to update
-  // get stock quote, for last price
-  // take current price and subtract purchase price = sum
-  // multiply SUM by number of stock
 };
 </script>
 

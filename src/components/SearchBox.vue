@@ -55,6 +55,7 @@
 <script>
 import { VueAutosuggest } from 'vue-autosuggest';
 import { eventBus } from '../main.js';
+import StocksService from '../services/StocksService.js';
 
 export default {
   name: 'search-box',
@@ -112,9 +113,11 @@ export default {
       stockObject.quantity = this.quantity;
       stockObject.purchasedPrice = this.purchasedPrice;
       stockObject.date = this.date;
-      eventBus.$emit('add-stock-to-user-list', stockObject);
-      this.selected = this.query = '';
-      this.quantity = this.date = null;
+      StocksService.postStock(stockObject).then((res) => {
+        eventBus.$emit('add-stock-to-user-list', res);
+        this.selected = this.query = '';
+        this.quantity = this.date = null;
+      });
     },
     fetchSymbols() {
       let url = `https://cloud.iexapis.com/stable/ref-data/symbols?token=${process.env.VUE_APP_IEX_API_TOKEN}`;
