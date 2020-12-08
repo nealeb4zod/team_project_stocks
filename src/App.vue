@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-header></app-header>
+    <app-header :userName="userName"></app-header>
     <login-box :userList="userList" v-if="userName === ''"></login-box>
     <div v-if="!(userName === '')">
       <user-box :userName="userName"></user-box>
@@ -86,6 +86,9 @@ export default {
     eventBus.$on('login-user', (selectedUser) => {
       this.userName = selectedUser;
       this.fetchStocks(this.userName);
+    });
+    eventBus.$on('logout-user', () => {
+      this.userName = '';
     });
   },
   computed: {
