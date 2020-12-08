@@ -1,13 +1,16 @@
 <template>
   <div>
     <app-header></app-header>
-    <user-box :userName="userName"></user-box>
-    <total-value :totalValue="totalValue"></total-value>
-    <graph-total-value></graph-total-value>
-    <search-box></search-box>
-    <list-of-stocks
-      :listOfUserHeldStocks="listOfUserHeldStocks"
-    ></list-of-stocks>
+    <login-box :userList="userList" v-if="userName === ''"></login-box>
+    <div v-if="!(userName === '')">
+      <user-box :userName="userName"></user-box>
+      <total-value :totalValue="totalValue"></total-value>
+      <graph-total-value></graph-total-value>
+      <search-box :userName="userName"></search-box>
+      <list-of-stocks
+        :listOfUserHeldStocks="listOfUserHeldStocks"
+      ></list-of-stocks>
+    </div>
   </div>
 </template>
 
@@ -15,6 +18,7 @@
 import AppHeaderVue from './components/AppHeader.vue';
 import GraphTotalValueVue from './components/GraphTotalValue.vue';
 import ListOfStocksVue from './components/ListOfStocks.vue';
+import LoginBoxVue from './components/LoginBox.vue';
 import SearchBoxVue from './components/SearchBox.vue';
 import TotalValueVue from './components/TotalValue.vue';
 import UserBoxVue from './components/UserBox.vue';
@@ -31,15 +35,21 @@ export default {
     'search-box': SearchBoxVue,
     'total-value': TotalValueVue,
     'user-box': UserBoxVue,
+    'login-box': LoginBoxVue,
   },
   data() {
     return {
-      userName: 'Neale',
+      userList: [],
+      userName: '',
       listOfUserHeldStocks: [],
     };
   },
   methods: {
-    fetchUsers() {},
+    fetchUsers() {
+      StocksService.getUsers().then((userList) => {
+        this.userList = userList.map((user) => user.userName);
+      });
+    },
     fetchStocks(userName) {
       StocksService.getUserStocks(userName).then((user) => {
         user.stocks.forEach((stock) => {
@@ -68,10 +78,14 @@ export default {
     },
   },
   mounted() {
-    this.fetchStocks(this.userName);
+    this.fetchUsers();
     eventBus.$on('add-stock-to-user-list', (selectedStock) => {
       StocksService.postStock(selectedStock).then((res) => {});
       this.updateStockList(this.listOfUserHeldStocks, selectedStock);
+    });
+    eventBus.$on('login-user', (selectedUser) => {
+      this.userName = selectedUser;
+      this.fetchStocks(this.userName);
     });
   },
   computed: {
