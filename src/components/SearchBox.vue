@@ -141,15 +141,18 @@ export default {
   padding: 0px;
   height: 31px;
   display: block;
+  width: 100px;
 }
 #date {
   padding: 0px;
   height: 31px;
   display: block;
+  width: 150px;
 }
 #add-stock {
   display: block;
   height: 35px;
+  width: 100px;
 }
 
 #autocomplete-form {
@@ -191,6 +194,9 @@ li:hover {
 #autosuggest {
   width: 100%;
   display: block;
+}
+#purchasedPrice {
+  width: 150px;
 }
 .autosuggest__results-item--highlighted {
   background-color: rgba(51, 217, 178, 0.2);
