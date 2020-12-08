@@ -8,7 +8,7 @@
       <graph-total-value></graph-total-value>
       <search-box :userName="userName"></search-box>
       <list-of-stocks
-        :listOfUserHeldStocks="listOfUserHeldStocks" :selectedStock="selectedStock"
+        :listOfUserHeldStocks="listOfUserHeldStocks"
       ></list-of-stocks>
     </div>
   </div>
@@ -41,7 +41,7 @@ export default {
     return {
       userList: [],
       userName: '',
-      listOfUserHeldStocks: []
+      listOfUserHeldStocks: [],
     };
   },
   methods: {
