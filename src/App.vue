@@ -89,6 +89,7 @@ export default {
     });
     eventBus.$on('logout-user', () => {
       this.userName = '';
+      this.listOfUserHeldStocks = [];
     });
   },
   computed: {
