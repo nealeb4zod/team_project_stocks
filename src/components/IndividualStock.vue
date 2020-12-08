@@ -5,7 +5,8 @@
         {{ stock.symbol }}
       </div>
       <!-- the !handleClick hides the graph when you click, after it is visible. -->
-      <div v-on:click="handleClick">
+      <div>
+       
         {{ stock.name }}
       </div>
       <div>
@@ -22,6 +23,11 @@
       </div>
       <div>
         {{ stockValue }}
+      </div>
+      <div>
+         <button v-on:click="handleClick">
+           View Graph
+         </button>
       </div>
     </div>
     <individual-stock-graph v-if='selectedStock === stock ' :stock='stock'></individual-stock-graph>
