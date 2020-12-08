@@ -1,44 +1,79 @@
 <template>
-
+  <div id="container">
+    <highcharts class="stock" :constructor-type="stockChart" :options="stockOptions">
+      
+    </highcharts>
+  </div>
 </template>
 
 <script>
-// import { Line } from 'vue-chartsjs'
-export default {
-  // extends: Line,
-  // props: {
-    // The data for the graph
-    // chartData: {
-    //   type: Array,
-    //   required: false
-    // },
-    // The labels for the graphs
-    // chartLabels: {
-    //   type: Array,
-    //   required: true
-    // },
-    // data(){
-    //   return {
-      // fixed settings for each of the graphs: scale, axes (gridlines or not), legend
-    //     options: {
-          // what we want for the graph
-    //     }
-    //   }
-    // }
+// needed imports to make the page responsive
+import { eventBus } from '@/main.js'
+// import StockService from '@/services/StockService.js'
 
-  
+export default {
   name: 'individual-stock-graph',
+  props: ['stock'],
+  data () {
+    return {
+      // title: this.stock.symbol,
+      // closeValues: [],
+     
+      stockOptions: {
+        rangeSelector: {
+          selected: 1
+        },
+        title: {
+          text: this.stock.name
+        },
+        yAxis: {
+          title: {
+            text: 'Stock price'
+          }
+        },
+        xAxis: {
+          title: {
+            text: 'Working days from today'
+          }
+        },
+        series: [{
+          symbol: this.stock.symbol,
+          data: [],
+          pointStart: -18,
+          pointInterval: 1,
+          tooltip: {
+            valueDecimals: 1
+          }
+        }]
+        
+      }
+    }
+  },
+
   mounted() {
-    // this.renderChart({
-    //   labels: this.chartLabels,
-    //   datasets: [
-    //     {
-              // data: this.chartData
-    //     }
-    //   ]
-    // }, this.options)
+    this.getStockQuote(this.stock.symbol)
+    
+  },
+  methods: {
+    getStockQuote(symbol) {
+      let url = `https://cloud.iexapis.com/stable/stock/${symbol}/chart/1m?token=${process.env.VUE_APP_IEX_API_TOKEN}`;
+
+      return fetch(url)
+        .then((res) => {
+          return res.json();
+        })
+        .then((data) => {
+          this.stockOptions.series[0].data = data.map((closeValue) =>{
+            return closeValue.close;
+
+          })
+        });
+    },
   }
 };
 </script>
 
-<style></style>
+<style scoped>
+
+
+</style>

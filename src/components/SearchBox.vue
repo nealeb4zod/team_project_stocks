@@ -55,6 +55,7 @@
 <script>
 import { VueAutosuggest } from 'vue-autosuggest';
 import { eventBus } from '../main.js';
+import StocksService from '../services/StocksService.js';
 
 export default {
   name: 'search-box',
@@ -112,9 +113,12 @@ export default {
       stockObject.quantity = this.quantity;
       stockObject.purchasedPrice = this.purchasedPrice;
       stockObject.date = this.date;
-      eventBus.$emit('add-stock-to-user-list', stockObject);
-      this.selected = this.query = '';
-      this.quantity = this.date = null;
+      console.log(stockObject);
+      StocksService.postStock(this.userName, stockObject).then(() => {
+        eventBus.$emit('add-stock-to-user-list', stockObject);
+        this.selected = this.query = '';
+        this.quantity = this.date = null;
+      });
     },
     fetchSymbols() {
       let url = `https://cloud.iexapis.com/stable/ref-data/symbols?token=${process.env.VUE_APP_IEX_API_TOKEN}`;
@@ -133,6 +137,7 @@ export default {
         });
     },
   },
+  props: ['userName'],
 };
 </script>
 
@@ -141,15 +146,18 @@ export default {
   padding: 0px;
   height: 31px;
   display: block;
+  width: 100px;
 }
 #date {
   padding: 0px;
   height: 31px;
   display: block;
+  width: 150px;
 }
 #add-stock {
   display: block;
   height: 35px;
+  width: 100px;
 }
 
 #autocomplete-form {
@@ -191,6 +199,9 @@ li:hover {
 #autosuggest {
   width: 100%;
   display: block;
+}
+#purchasedPrice {
+  width: 150px;
 }
 .autosuggest__results-item--highlighted {
   background-color: rgba(51, 217, 178, 0.2);
