@@ -6,7 +6,7 @@
     <graph-total-value></graph-total-value>
     <search-box></search-box>
     <list-of-stocks
-      :listOfUserHeldStocks="listOfUserHeldStocks"
+      :listOfUserHeldStocks="listOfUserHeldStocks" :selectedStock="selectedStock"
     ></list-of-stocks>
   </div>
 </template>
@@ -36,6 +36,7 @@ export default {
     return {
       userName: '',
       listOfUserHeldStocks: [],
+      selectedStock: null
     };
   },
   methods: {
@@ -71,6 +72,9 @@ export default {
     eventBus.$on('add-stock-to-user-list', (selectedStock) => {
       StocksService.postStock(selectedStock).then((res) => {});
       this.updateStockList(this.listOfUserHeldStocks, selectedStock);
+    });
+    eventBus.$on('stock-selected', (stock) => {
+      this.selectedStock = stock
     });
   },
   computed: {

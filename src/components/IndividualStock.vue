@@ -4,7 +4,8 @@
       <div>
         {{ stock.symbol }}
       </div>
-      <div>
+      <!-- the !handleClick hides the graph when you click, after it is visible. -->
+      <div v-on:click="handleClick">
         {{ stock.name }}
       </div>
       <div>
@@ -23,15 +24,16 @@
         {{ stockValue }}
       </div>
     </div>
-    <individual-stock-graph :stock='stock'></individual-stock-graph>
+    <individual-stock-graph v-if='selectedStock === stock ' :stock='stock'></individual-stock-graph>
   </div>
 </template>
 
 <script>
 import IndividualStockGraphVue from './IndividualStockGraph.vue';
+import {eventBus} from '../main.js'
 export default {
   name: 'individual-stock',
-  props: ['stock'],
+  props: ['stock', 'selectedStock'],
   components: {
     'individual-stock-graph': IndividualStockGraphVue,
   },
@@ -42,6 +44,11 @@ export default {
       return valueOfStock;
     },
   },
+  methods: {
+    handleClick() {
+      eventBus.$emit('stock-selected', this.stock)
+    }
+  }
 };
 </script>
 
