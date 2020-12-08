@@ -25,7 +25,7 @@
       <div>
         
          <button v-on:click="handleClick">
-           View Graph
+           {{ text }}
          </button>
       </div>
       
@@ -42,7 +42,8 @@ export default {
   props: ['stock'],
   data(){
     return{
-      isActive: false
+      isActive: false,
+      text: "View Graph"
     }
   },
   components: {
@@ -59,6 +60,11 @@ export default {
     handleClick() {
       // eventBus.$emit('stock-selected', this.stock)
       this.isActive = !this.isActive
+      if (this.isActive) {
+        this.text = "Hide Graph";
+      } else {
+        this.text = "View Graph";
+      }
     }
   }
 };
