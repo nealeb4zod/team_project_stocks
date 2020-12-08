@@ -34,17 +34,18 @@ export default {
   },
   data() {
     return {
-      userName: '',
+      userName: 'Neale',
       listOfUserHeldStocks: [],
     };
   },
   methods: {
-    fetchStocks() {
-      StocksService.getStocks().then((stocks) =>
-        stocks.forEach((stock) => {
+    fetchUsers() {},
+    fetchStocks(userName) {
+      StocksService.getUserStocks(userName).then((user) => {
+        user.stocks.forEach((stock) => {
           this.updateStockList(this.listOfUserHeldStocks, stock);
-        })
-      );
+        });
+      });
     },
     getStockQuote(symbol) {
       let url = `https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${process.env.VUE_APP_IEX_API_TOKEN}`;
@@ -67,7 +68,7 @@ export default {
     },
   },
   mounted() {
-    this.fetchStocks();
+    this.fetchStocks(this.userName);
     eventBus.$on('add-stock-to-user-list', (selectedStock) => {
       StocksService.postStock(selectedStock).then((res) => {});
       this.updateStockList(this.listOfUserHeldStocks, selectedStock);

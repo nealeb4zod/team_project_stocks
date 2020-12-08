@@ -1,8 +1,9 @@
 const baseURL = 'http://localhost:3000/api/stocks/';
 
 export default {
-  getStocks() {
-    return fetch(baseURL).then((res) => res.json());
+  getUsers() {},
+  getUserStocks(userName) {
+    return fetch(baseURL + userName).then((res) => res.json());
   },
   postStock(payload) {
     return fetch(baseURL, {
