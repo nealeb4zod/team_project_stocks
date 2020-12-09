@@ -32,7 +32,7 @@ export default {
         xAxis: {
             categories: [],
           title: {
-            text: 'Working days from today',
+            text: 'Date',
           },
         },
         series: [
