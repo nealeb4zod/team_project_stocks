@@ -117,6 +117,7 @@ export default {
 #app-header {
   background-color: #262629;
   justify-content: center;
+  margin: 0;
 }
 
 #login-box {
@@ -125,6 +126,8 @@ export default {
 
 body {
   background-color: #ffffff;
+  margin: 0;
+
 } 
 
 
@@ -132,6 +135,7 @@ body {
   display: flex;
   justify-content: center;
   height: 900px;
+  
   margin: 0;
   background-color: #262629;
 }
@@ -178,13 +182,18 @@ body {
     font-size: 20px;
     text-decoration: bold;
     margin-left: 20px;
-  display: grid;
-  grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
+    display: grid;
+    grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
 }
 .submit-button{
-height: 30px;
-width: 70px;
+height: 32px;
+width: 64px;
 float: right;
+}
+
+.login-button{
+height: 32px;
+width: 64px;
 }
 .stock{
   padding-bottom: 30px;

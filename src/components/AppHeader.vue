@@ -26,11 +26,12 @@ export default {
   display: flex;
   flex-flow: row;
   justify-content: center;
+  margin: 0;
 }
 
 img {
   width: 150px;
-  padding: 8px;
+  padding: 16px 16px 16px 16px;
 }
 
 /* #header {

@@ -2,13 +2,13 @@
 
   <div class="login-form">
     <form v-on:submit.prevent="loginUser" class="flex-form">
-      <label for="user-name">User Name:</label>
+      <label for="user-name">User Name: </label>
       <select name="user-name" id="user-name" v-model="selectedUser">
         <option v-for="(user, index) in userList" :key="index" :value="user">{{
           user
         }}</option>
       </select>
-      <input type="submit" class="submit-button" value="Login" />
+      <input type="submit" class="login-button" value="Login" />
     </form>
   </div>
 </template>
@@ -32,9 +32,5 @@ export default {
 </script>
 
 <style>
-/* .login-form {
-  background-color: #262629;
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
-} */
+
 </style>
