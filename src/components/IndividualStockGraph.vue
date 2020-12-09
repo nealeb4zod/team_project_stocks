@@ -35,12 +35,19 @@ export default {
             text: 'Date',
           },
         },
+        legend: {
+          title: {
+            text: 'Stock'
+          }
+        },
+
         series: [
           {
             symbol: this.stock.symbol,
             data: [],
             pointStart: 0,
             pointInterval: 1,
+            name: this.stock.name,
             tooltip: {
               valueDecimals: 1,
             },
