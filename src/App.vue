@@ -110,15 +110,25 @@ export default {
 <style>
 .stock-table {
   margin-left: 20px;
-  display: grid;
+  display: inline-grid;
   grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
+  padding-bottom: 15px;
+  padding-top: 15px;
 
 }
 .stock-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   margin-left: 30px;
   display: grid;
   grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
-
+  scroll-padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid black;
+  background-color: white;
+  padding-bottom: 15px;
+  margin-top: 30px;
 }
 
 .stock-table:hover{
@@ -128,10 +138,12 @@ export default {
     margin-left: 20px;
   display: grid;
   grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
-
 }
 .submit-button{
 height: 30px;
-width: 70px
+width: 70px;
+}
+.stock{
+  padding-bottom: 30px;
 }
 </style>
