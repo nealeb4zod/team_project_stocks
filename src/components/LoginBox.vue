@@ -1,5 +1,6 @@
 <template>
-  <div>
+
+  <div class="login-form">
     <form v-on:submit.prevent="loginUser" class="flex-form">
       <label for="user-name">User Name:</label>
       <select name="user-name" id="user-name" v-model="selectedUser">
@@ -30,4 +31,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.login-form {
+  background-color: #262629;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+</style>

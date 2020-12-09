@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="400px" height="400px" viewBox="0 0 400 400" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Investably</title>
+    <defs>
+        <linearGradient x1="74.0809975%" y1="-7.46807719%" x2="34.3764955%" y2="38.2370553%" id="linearGradient-1">
+            <stop stop-color="#008080" offset="0%"></stop>
+            <stop stop-color="#1B5874" offset="100%"></stop>
+        </linearGradient>
+        <path d="M260,0 L260,171 L260,171 C260,242.797017 201.797017,301 130,301 L0,301 L0,171 C0,99.2029825 58.2029825,41 130,41 C135.477923,41 140.876711,41.3388163 146.176552,41.9966359 L188,42 L188.000895,54.6242091 C199.802592,60.5175058 210.582254,68.1531718 220.002851,77.19418 L220,0 L260,0 Z" id="path-2"></path>
+        <linearGradient x1="49.1208911%" y1="5.46055474%" x2="49.1208911%" y2="24.8282345%" id="linearGradient-4">
+            <stop stop-color="#008080" offset="0%"></stop>
+            <stop stop-color="#1B5874" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Investably" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect id="Rectangle" fill="#94CAF0" x="0" y="0" width="400" height="400" rx="35"></rect>
+        <g id="Oval" transform="translate(70.000000, 29.000000)">
+            <mask id="mask-3" fill="white">
+                <use xlink:href="#path-2"></use>
+            </mask>
+            <use id="Mask" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+            <circle fill="url(#linearGradient-4)" mask="url(#mask-3)" cx="92" cy="394" r="271"></circle>
+        </g>
+        <g id="Bars" transform="translate(148.000000, 70.000000)" fill="#94CAF0">
+            <path d="M142,0 L142,208 L110,208 L110,0 L142,0 Z M84,53 L84,208 L52,208 L52,53 L84,53 Z M32,127 L32,207 L0,207 L0,127 L32,127 Z" id="Combined-Shape"></path>
+        </g>
+    </g>
+</svg>

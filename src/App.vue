@@ -1,9 +1,16 @@
+
 <template>
   <div>
     <app-header :userName="userName"></app-header>
-    <login-box :userList="userList" v-if="userName === ''"></login-box>
+    <div class='container'>
+      <div class='child'>
+    <login-box element id='login-box' :userList="userList" v-if="userName === ''"></login-box>
+    </div>
+    </div>
     <div v-if="!(userName === '')">
+    
       <user-box :userName="userName"></user-box>
+    
       <total-value :totalValue="totalValue"></total-value>
       <graph-total-value></graph-total-value>
       <search-box :userName="userName"></search-box>
@@ -13,6 +20,7 @@
     </div>
   </div>
 </template>
+
 
 <script>
 import AppHeaderVue from './components/AppHeader.vue';
@@ -108,6 +116,22 @@ export default {
 </script>
 
 <style>
+
+body {
+  background-color: #262629;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  
+}
+
+.child {
+  padding: 250px;
+  
+}
+
 .stock-table {
   margin-left: 20px;
   display: grid;

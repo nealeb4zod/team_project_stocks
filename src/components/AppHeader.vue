@@ -1,7 +1,7 @@
 <template>
   <div id="header">
-    <img src="../assets/logo.png" alt="" />
-    <h1>Investably</h1>
+    <img src="../assets/Investably_logo.svg" alt="" />
+    
     <button v-if="!(userName === '')" v-on:click="logoutUser">Logout</button>
   </div>
 </template>
@@ -23,5 +23,15 @@ export default {
 #header {
   display: flex;
   flex-flow: row;
+  justify-content: center;
+}
+
+img {
+  width: 150px;
+  padding: 8px;
+}
+
+#header {
+  background-color: #262629;
 }
 </style>
