@@ -11,4 +11,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+#user-box {
+  padding-bottom: 10px;
+}
+</style>
