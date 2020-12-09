@@ -5,7 +5,6 @@
     <div v-if="!(userName === '')">
       <user-box :userName="userName"></user-box>
       <total-value :totalValue="totalValue"></total-value>
-      <graph-total-value></graph-total-value>
       <search-box :userName="userName"></search-box>
       <list-of-stocks
         :listOfUserHeldStocks="listOfUserHeldStocks"
@@ -16,7 +15,6 @@
 
 <script>
 import AppHeaderVue from './components/AppHeader.vue';
-import GraphTotalValueVue from './components/GraphTotalValue.vue';
 import ListOfStocksVue from './components/ListOfStocks.vue';
 import LoginBoxVue from './components/LoginBox.vue';
 import SearchBoxVue from './components/SearchBox.vue';
@@ -30,7 +28,6 @@ export default {
   name: 'app',
   components: {
     'app-header': AppHeaderVue,
-    'graph-total-value': GraphTotalValueVue,
     'list-of-stocks': ListOfStocksVue,
     'search-box': SearchBoxVue,
     'total-value': TotalValueVue,
@@ -86,10 +83,9 @@ export default {
     eventBus.$on('logout-user', () => {
       this.userName = '';
       this.listOfUserHeldStocks = [];
-    })
+    });
   },
-  
-  
+
   computed: {
     totalValue() {
       let totalValueOfStock = 0;

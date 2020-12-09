@@ -41,18 +41,7 @@ export default {
   components: {
     'individual-stock': IndividualStockVue,
   },
-  data() {
-    return{
-      blah: true
-    }
-  }
 };
 </script>
 
-<style>
-.stock-table{
-font-family: times;
-padding: 10px;
-width: 150px;
-}
-</style>
+<style></style>
