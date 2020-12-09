@@ -2,7 +2,7 @@
 <template>
   <div>
     <app-header id='app-header' :userName="userName"></app-header>
-    <div class='container'>
+    <div v-if="userName===''" class='container'>
       <div class='child'>
     <login-box element id='login-box' :userList="userList" v-if="userName === ''"></login-box>
     </div>
@@ -17,6 +17,7 @@
         :listOfUserHeldStocks="listOfUserHeldStocks"
       ></list-of-stocks>
     </div>
+    <footer></footer>
   </div>
 </template>
 
@@ -113,6 +114,15 @@ export default {
 
 <style>
 
+#app-header {
+  background-color: #262629;
+  justify-content: center;
+}
+
+#login-box {
+  color: white;
+}
+
 body {
   background-color: #ffffff;
 } 
@@ -154,6 +164,15 @@ body {
   margin-top: 30px;
 }
 
+/* footer {
+  background-color: #262629;
+   width:100%;
+    height:100px;
+    position:absolute;
+    bottom:0;
+    left:0;
+} */
+
 .stock-table:hover{
     color: blue;
     font-size: 20px;
@@ -165,6 +184,7 @@ body {
 .submit-button{
 height: 30px;
 width: 70px;
+float: right;
 }
 .stock{
   padding-bottom: 30px;

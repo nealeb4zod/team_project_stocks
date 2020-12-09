@@ -2,7 +2,6 @@
   <div>
     <div id="header">
     <img src="../assets/Investably_logo.svg" alt="" />
-    <h1>Investably</h1>
     
   </div>
   <button v-if="!(userName === '')" v-on:click="logoutUser" class="submit-button">Logout</button>
