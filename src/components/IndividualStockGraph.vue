@@ -30,6 +30,7 @@ export default {
           },
         },
         xAxis: {
+            categories: [],
           title: {
             text: 'Working days from today',
           },
@@ -38,7 +39,7 @@ export default {
           {
             symbol: this.stock.symbol,
             data: [],
-            pointStart: -18,
+            pointStart: 0,
             pointInterval: 1,
             tooltip: {
               valueDecimals: 1,
@@ -60,7 +61,12 @@ export default {
           return res.json();
         })
         .then((data) => {
-          this.stockOptions.series[0].data = [...data];
+          this.stockOptions.series[0].data = data.map((filteredData) => {
+            return filteredData.closeValue;
+          });
+          this.stockOptions.xAxis.categories = data.map((filteredData) => {
+            return filteredData.closeValueDate;
+          });
         });
     },
   },
