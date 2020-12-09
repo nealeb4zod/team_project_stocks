@@ -1,11 +1,15 @@
 <template>
   <div>
     <div id="header">
-    <img src="../assets/logo.png" alt="" />
-    <h1>Investably</h1>
-    
-  </div>
-  <button v-if="!(userName === '')" v-on:click="logoutUser" class="submit-button">Logout</button>
+      <img src="../assets/Investably_logo.svg" alt="" />
+    </div>
+    <button
+      v-if="!(userName === '')"
+      v-on:click="logoutUser"
+      class="submit-button"
+    >
+      Logout
+    </button>
   </div>
 </template>
 
@@ -26,5 +30,16 @@ export default {
 #header {
   display: flex;
   flex-flow: row;
+  justify-content: center;
 }
+
+img {
+  width: 150px;
+  /* padding: 8px; */
+  margin: 40px;
+}
+
+/* #header {
+  background-color: #262629;
+} */
 </style>
