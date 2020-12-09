@@ -1,10 +1,15 @@
 <template>
   <div>
     <div id="header">
-    <img src="../assets/Investably_logo.svg" alt="" />
-    
-  </div>
-  <button v-if="!(userName === '')" v-on:click="logoutUser" class="submit-button">Logout</button>
+      <img src="../assets/Investably_logo.svg" alt="" />
+    </div>
+    <button
+      v-if="!(userName === '')"
+      v-on:click="logoutUser"
+      class="submit-button"
+    >
+      Logout
+    </button>
   </div>
 </template>
 
@@ -30,7 +35,8 @@ export default {
 
 img {
   width: 150px;
-  padding: 8px;
+  /* padding: 8px; */
+  margin: 40px;
 }
 
 /* #header {
