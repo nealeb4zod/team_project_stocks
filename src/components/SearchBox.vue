@@ -113,7 +113,6 @@ export default {
       stockObject.quantity = this.quantity;
       stockObject.purchasedPrice = this.purchasedPrice;
       stockObject.date = this.date;
-      console.log(stockObject);
       StocksService.postStock(this.userName, stockObject).then(() => {
         eventBus.$emit('add-stock-to-user-list', stockObject);
         this.selected = this.query = '';
@@ -121,7 +120,7 @@ export default {
       });
     },
     fetchSymbols() {
-      let url = `https://cloud.iexapis.com/stable/ref-data/symbols?token=${process.env.VUE_APP_IEX_API_TOKEN}`;
+      let url = 'http://localhost:3000/iex-data/symbols';
 
       fetch(url)
         .then((res) => {
