@@ -124,7 +124,7 @@ body {
 .container {
   display: flex;
   justify-content: center;
-  
+
 }
 
 .child {
