@@ -79,7 +79,6 @@ export default {
       StocksService.postStock(selectedStock).then((res) => {});
       this.updateStockList(this.listOfUserHeldStocks, selectedStock);
     });
-
     eventBus.$on('login-user', (selectedUser) => {
       this.userName = selectedUser;
       this.fetchStocks(this.userName);
@@ -87,8 +86,10 @@ export default {
     eventBus.$on('logout-user', () => {
       this.userName = '';
       this.listOfUserHeldStocks = [];
-    });
+    })
   },
+  
+  
   computed: {
     totalValue() {
       let totalValueOfStock = 0;
@@ -110,6 +111,6 @@ export default {
 .stock-table {
   margin-left: 20px;
   display: grid;
-  grid-template-columns: 100px 200px 100px 200px 200px 200px 200px 200px;
+  grid-template-columns: 100px 150px 100px 150px 150px 150px 150px 200px;
 }
 </style>

@@ -49,4 +49,10 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+#stock-table{
+font-family: times;
+padding: 10px;
+width: 150px;
+}
+</style>
