@@ -7,7 +7,7 @@
           user
         }}</option>
       </select>
-      <input type="submit" value="Login" />
+      <input type="submit" class="submit-button" value="Login" />
     </form>
   </div>
 </template>

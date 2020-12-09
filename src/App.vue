@@ -111,6 +111,27 @@ export default {
 .stock-table {
   margin-left: 20px;
   display: grid;
-  grid-template-columns: 100px 150px 100px 150px 150px 150px 150px 200px;
+  grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
+
+}
+.stock-header {
+  margin-left: 30px;
+  display: grid;
+  grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
+
+}
+
+.stock-table:hover{
+    color: blue;
+    font-size: 20px;
+    text-decoration: bold;
+    margin-left: 20px;
+  display: grid;
+  grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
+
+}
+.submit-button{
+height: 30px;
+width: 70px
 }
 </style>

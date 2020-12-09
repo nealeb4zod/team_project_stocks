@@ -1,8 +1,11 @@
 <template>
-  <div id="header">
+  <div>
+    <div id="header">
     <img src="../assets/logo.png" alt="" />
     <h1>Investably</h1>
-    <button v-if="!(userName === '')" v-on:click="logoutUser">Logout</button>
+    
+  </div>
+  <button v-if="!(userName === '')" v-on:click="logoutUser" class="submit-button">Logout</button>
   </div>
 </template>
 

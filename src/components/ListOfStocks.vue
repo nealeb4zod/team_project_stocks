@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="stock-table">
+    <div class="stock-header">
       <div>
         Symbol:
       </div>
@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style>
-#stock-table{
+.stock-table{
 font-family: times;
 padding: 10px;
 width: 150px;
