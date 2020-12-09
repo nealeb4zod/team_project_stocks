@@ -7,16 +7,12 @@
 <script>
 // needed imports to make the page responsive
 import { eventBus } from '@/main.js';
-// import StockService from '@/services/StockService.js'
 
 export default {
   name: 'individual-stock-graph',
   props: ['stock'],
   data() {
     return {
-      // title: this.stock.symbol,
-      // closeValues: [],
-
       stockOptions: {
         rangeSelector: {
           selected: 1,
@@ -30,7 +26,7 @@ export default {
           },
         },
         xAxis: {
-            categories: [],
+          categories: [],
           title: {
             text: 'Date',
           },
