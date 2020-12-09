@@ -120,7 +120,7 @@ export default {
       });
     },
     fetchSymbols() {
-      let url = 'http://localhost:3000/iex-data/symbols';
+      let url = `${process.env.VUE_APP_API_URL}/iex-data/symbols`;
 
       fetch(url)
         .then((res) => {

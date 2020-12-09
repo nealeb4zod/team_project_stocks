@@ -55,7 +55,7 @@ export default {
       });
     },
     getStockQuote(symbol) {
-      let url = `http://localhost:3000/iex-data/quote/${symbol}`;
+      let url = `${process.env.VUE_APP_API_URL}/iex-data/quote/${symbol}`;
       return fetch(url).then((res) => {
         return res.json();
       });
@@ -110,7 +110,6 @@ export default {
   grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
   padding-bottom: 15px;
   padding-top: 15px;
-
 }
 .stock-header {
   position: -webkit-sticky;
@@ -127,19 +126,19 @@ export default {
   margin-top: 30px;
 }
 
-.stock-table:hover{
-    color: blue;
-    font-size: 20px;
-    text-decoration: bold;
-    margin-left: 20px;
+.stock-table:hover {
+  color: blue;
+  font-size: 20px;
+  text-decoration: bold;
+  margin-left: 20px;
   display: grid;
   grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
 }
-.submit-button{
-height: 30px;
-width: 70px;
+.submit-button {
+  height: 30px;
+  width: 70px;
 }
-.stock{
+.stock {
   padding-bottom: 30px;
 }
 </style>

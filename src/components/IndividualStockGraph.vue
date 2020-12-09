@@ -33,8 +33,8 @@ export default {
         },
         legend: {
           title: {
-            text: 'Stock'
-          }
+            text: 'Stock',
+          },
         },
 
         series: [
@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     getStockQuote(symbol) {
-      let url = `http://localhost:3000/iex-data/chart/${symbol}`;
+      let url = `${process.env.VUE_APP_API_URL}/iex-data/chart/${symbol}`;
       fetch(url)
         .then((res) => {
           return res.json();
