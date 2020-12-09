@@ -12,7 +12,6 @@
       <user-box :userName="userName"></user-box>
     
       <total-value :totalValue="totalValue"></total-value>
-      <graph-total-value></graph-total-value>
       <search-box :userName="userName"></search-box>
       <list-of-stocks
         :listOfUserHeldStocks="listOfUserHeldStocks"
@@ -24,7 +23,6 @@
 
 <script>
 import AppHeaderVue from './components/AppHeader.vue';
-import GraphTotalValueVue from './components/GraphTotalValue.vue';
 import ListOfStocksVue from './components/ListOfStocks.vue';
 import LoginBoxVue from './components/LoginBox.vue';
 import SearchBoxVue from './components/SearchBox.vue';
@@ -38,7 +36,6 @@ export default {
   name: 'app',
   components: {
     'app-header': AppHeaderVue,
-    'graph-total-value': GraphTotalValueVue,
     'list-of-stocks': ListOfStocksVue,
     'search-box': SearchBoxVue,
     'total-value': TotalValueVue,
@@ -94,10 +91,9 @@ export default {
     eventBus.$on('logout-user', () => {
       this.userName = '';
       this.listOfUserHeldStocks = [];
-    })
+    });
   },
-  
-  
+
   computed: {
     totalValue() {
       let totalValueOfStock = 0;
@@ -134,7 +130,40 @@ body {
 
 .stock-table {
   margin-left: 20px;
+  display: inline-grid;
+  grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+
+}
+.stock-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-left: 20px;
   display: grid;
-  grid-template-columns: 100px 150px 100px 150px 150px 150px 150px 200px;
+  grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
+  scroll-padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid black;
+  background-color: white;
+  padding-bottom: 15px;
+  margin-top: 30px;
+}
+
+.stock-table:hover{
+    color: blue;
+    font-size: 20px;
+    text-decoration: bold;
+    margin-left: 20px;
+  display: grid;
+  grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
+}
+.submit-button{
+height: 30px;
+width: 70px;
+}
+.stock{
+  padding-bottom: 30px;
 }
 </style>

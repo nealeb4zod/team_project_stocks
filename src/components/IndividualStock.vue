@@ -4,7 +4,7 @@
       <div>
         {{ stock.symbol }}
       </div>
-      <div>       
+      <div>
         {{ stock.name }}
       </div>
       <div>
@@ -20,31 +20,32 @@
         {{ stock.currentPrice }}
       </div>
       <div>
-        {{ (100 * stockValue - (100 * stockValue % 1)) / 100 }}
+        {{ (100 * stockValue - ((100 * stockValue) % 1)) / 100 }}
       </div>
       <div>
-        
-         <button v-on:click="handleClick">
-           {{ text }}
-         </button>
+        <button v-on:click="handleClick">
+          {{ text }}
+        </button>
       </div>
-      
     </div>
-    <individual-stock-graph v-if='isActive' :stock='stock'></individual-stock-graph>
+    <individual-stock-graph
+      v-if="isActive"
+      :stock="stock"
+    ></individual-stock-graph>
   </div>
 </template>
 
 <script>
 import IndividualStockGraphVue from './IndividualStockGraph.vue';
-import {eventBus} from '../main.js'
+import { eventBus } from '../main.js';
 export default {
   name: 'individual-stock',
   props: ['stock'],
-  data(){
-    return{
+  data() {
+    return {
       isActive: false,
-      text: "View Graph",
-    }
+      text: 'View Graph',
+    };
   },
   components: {
     'individual-stock-graph': IndividualStockGraphVue,
@@ -58,18 +59,15 @@ export default {
   },
   methods: {
     handleClick() {
-      // eventBus.$emit('stock-selected', this.stock)
-      this.isActive = !this.isActive
+      this.isActive = !this.isActive;
       if (this.isActive) {
-        this.text = "Hide Graph";
+        this.text = 'Hide Graph';
       } else {
-        this.text = "View Graph";
+        this.text = 'View Graph';
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style>
-
-</style>
+<style></style>
