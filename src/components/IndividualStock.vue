@@ -20,7 +20,7 @@
         {{ stock.currentPrice }}
       </div>
       <div>
-        {{ stockValue }}
+        {{ (100 * stockValue - (100 * stockValue % 1)) / 100 }}
       </div>
       <div>
         
@@ -43,7 +43,7 @@ export default {
   data(){
     return{
       isActive: false,
-      text: "View Graph"
+      text: "View Graph",
     }
   },
   components: {
