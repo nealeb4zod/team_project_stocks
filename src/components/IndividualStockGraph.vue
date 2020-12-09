@@ -18,7 +18,7 @@ export default {
           selected: 1,
         },
         title: {
-          text: this.stock.name,
+          text: '',
         },
         yAxis: {
           title: {

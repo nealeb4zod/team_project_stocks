@@ -4,7 +4,9 @@
     <img src="../assets/Investably_logo.svg" alt="" />
     
   </div>
+  <div id='margin-button'>
   <button v-if="!(userName === '')" v-on:click="logoutUser" class="submit-button">Logout</button>
+  </div>
   </div>
 </template>
 

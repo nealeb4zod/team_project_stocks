@@ -141,6 +141,8 @@ export default {
 </script>
 
 <style>
+
+
 #quantity {
   padding: 0px;
   height: 31px;

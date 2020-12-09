@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Logged in User: {{ userName }}</h2>
+    <h3>{{ userName }}'s portfolio</h3>
   </div>
 </template>
 

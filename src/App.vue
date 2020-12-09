@@ -8,16 +8,16 @@
     </div>
     </div>
     <div v-if="!(userName === '')">
-    
+    <div id='main-divs'>
       <user-box element id='user-box' :userName="userName"></user-box>
     
       <total-value id='total-value' :totalValue="totalValue"></total-value>
       <search-box id='search-box' :userName="userName"></search-box>
       <list-of-stocks
-        :listOfUserHeldStocks="listOfUserHeldStocks"
-      ></list-of-stocks>
+        :listOfUserHeldStocks="listOfUserHeldStocks"></list-of-stocks>
     </div>
     <footer></footer>
+  </div>
   </div>
 </template>
 
@@ -120,6 +120,16 @@ export default {
   margin: 0;
 }
 
+
+
+#user-box{
+  margin-left: 20px;
+}
+
+#total-value{
+  margin-left: 20px;
+}
+
 #login-box {
   color: white;
 }
@@ -127,8 +137,13 @@ export default {
 body {
   background-color: #ffffff;
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
 
 } 
+
+#main-divs {
+  margin-left: 40px;
+}
 
 
 .container {
@@ -177,23 +192,27 @@ body {
     left:0;
 } */
 
-.stock-table:hover{
+/* .stock-table:hover{
     color: blue;
     font-size: 20px;
     text-decoration: bold;
     margin-left: 20px;
     display: grid;
     grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
-}
+} */
+
 .submit-button{
 height: 32px;
 width: 64px;
 float: right;
+margin-right: 40px;
+margin-top: 40px;
 }
 
 .login-button{
 height: 32px;
 width: 64px;
+margin-left: 0;
 }
 .stock{
   padding-bottom: 30px;

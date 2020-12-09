@@ -2,25 +2,25 @@
   <div>
     <div class="stock-header">
       <div>
-        Symbol:
+        Symbol
       </div>
       <div>
-        Name:
+        Name
       </div>
       <div>
-        Quantity:
+        Quantity
       </div>
       <div>
-        Purchased Price:
+        Purchased Price
       </div>
       <div>
-        Purchased date:
+        Purchased date
       </div>
       <div>
-        Current Price:
+        Current Price
       </div>
       <div>
-        Stock Value:
+        Stock Value
       </div>
     </div>
 
@@ -44,4 +44,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.stock-header{
+font-weight: bold;
+}
+  </style>

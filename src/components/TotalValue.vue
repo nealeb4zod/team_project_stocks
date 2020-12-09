@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>Total Value: {{(100 * totalValue - (100 * totalValue % 1)) / 100 }}</h2>
+    <h4>Current value: {{(100 * totalValue - (100 * totalValue % 1)) / 100 }}</h4>
   </div>
 </template>
 
