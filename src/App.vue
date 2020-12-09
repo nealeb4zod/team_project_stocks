@@ -1,13 +1,16 @@
 <template>
   <div>
-    <app-header></app-header>
-    <user-box :userName="userName"></user-box>
-    <total-value :totalValue="totalValue"></total-value>
-    <graph-total-value></graph-total-value>
-    <search-box></search-box>
-    <list-of-stocks
-      :listOfUserHeldStocks="listOfUserHeldStocks" :selectedStock="selectedStock"
-    ></list-of-stocks>
+    <app-header :userName="userName"></app-header>
+    <login-box :userList="userList" v-if="userName === ''"></login-box>
+    <div v-if="!(userName === '')">
+      <user-box :userName="userName"></user-box>
+      <total-value :totalValue="totalValue"></total-value>
+      <graph-total-value></graph-total-value>
+      <search-box :userName="userName"></search-box>
+      <list-of-stocks
+        :listOfUserHeldStocks="listOfUserHeldStocks" :selectedStock="selectedStock"
+      ></list-of-stocks>
+    </div>
   </div>
 </template>
 
@@ -15,6 +18,7 @@
 import AppHeaderVue from './components/AppHeader.vue';
 import GraphTotalValueVue from './components/GraphTotalValue.vue';
 import ListOfStocksVue from './components/ListOfStocks.vue';
+import LoginBoxVue from './components/LoginBox.vue';
 import SearchBoxVue from './components/SearchBox.vue';
 import TotalValueVue from './components/TotalValue.vue';
 import UserBoxVue from './components/UserBox.vue';
@@ -31,30 +35,33 @@ export default {
     'search-box': SearchBoxVue,
     'total-value': TotalValueVue,
     'user-box': UserBoxVue,
+    'login-box': LoginBoxVue,
   },
   data() {
     return {
+      userList: [],
       userName: '',
       listOfUserHeldStocks: []
     };
   },
   methods: {
-    fetchStocks() {
-      StocksService.getStocks().then((stocks) =>
-        stocks.forEach((stock) => {
+    fetchUsers() {
+      StocksService.getUsers().then((userList) => {
+        this.userList = userList.map((user) => user.userName);
+      });
+    },
+    fetchStocks(userName) {
+      StocksService.getUserStocks(userName).then((user) => {
+        user.stocks.forEach((stock) => {
           this.updateStockList(this.listOfUserHeldStocks, stock);
-        })
-      );
+        });
+      });
     },
     getStockQuote(symbol) {
-      let url = `https://cloud.iexapis.com/stable/stock/${symbol}/quote?token=${process.env.VUE_APP_IEX_API_TOKEN}`;
-      return fetch(url)
-        .then((res) => {
-          return res.json();
-        })
-        .then((data) => {
-          return data.latestPrice;
-        });
+      let url = `http://localhost:3000/iex-data/quote/${symbol}`;
+      return fetch(url).then((res) => {
+        return res.json();
+      });
     },
     updateStockList(stockArray, newStockObject) {
       this.getStockQuote(newStockObject.symbol).then((currentPrice) => {
@@ -67,12 +74,22 @@ export default {
     },
   },
   mounted() {
-    this.fetchStocks();
+    this.fetchUsers();
     eventBus.$on('add-stock-to-user-list', (selectedStock) => {
       StocksService.postStock(selectedStock).then((res) => {});
       this.updateStockList(this.listOfUserHeldStocks, selectedStock);
     });
+    eventBus.$on('login-user', (selectedUser) => {
+      this.userName = selectedUser;
+      this.fetchStocks(this.userName);
+    });
+    eventBus.$on('logout-user', () => {
+      this.userName = '';
+      this.listOfUserHeldStocks = [];
+    })
   },
+  
+  
   computed: {
     totalValue() {
       let totalValueOfStock = 0;

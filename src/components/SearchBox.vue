@@ -113,8 +113,9 @@ export default {
       stockObject.quantity = this.quantity;
       stockObject.purchasedPrice = this.purchasedPrice;
       stockObject.date = this.date;
-      StocksService.postStock(stockObject).then((res) => {
-        eventBus.$emit('add-stock-to-user-list', res);
+      console.log(stockObject);
+      StocksService.postStock(this.userName, stockObject).then(() => {
+        eventBus.$emit('add-stock-to-user-list', stockObject);
         this.selected = this.query = '';
         this.quantity = this.date = null;
       });
@@ -136,6 +137,7 @@ export default {
         });
     },
   },
+  props: ['userName'],
 };
 </script>
 
