@@ -34,7 +34,7 @@ img {
   padding: 8px;
 }
 
-#header {
+/* #header {
   background-color: #262629;
-}
+} */
 </style>

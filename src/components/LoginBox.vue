@@ -32,9 +32,9 @@ export default {
 </script>
 
 <style>
-.login-form {
+/* .login-form {
   background-color: #262629;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
-}
+} */
 </style>

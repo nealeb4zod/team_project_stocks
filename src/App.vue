@@ -1,7 +1,7 @@
 
 <template>
   <div>
-    <app-header :userName="userName"></app-header>
+    <app-header id='app-header' :userName="userName"></app-header>
     <div class='container'>
       <div class='child'>
     <login-box element id='login-box' :userList="userList" v-if="userName === ''"></login-box>
@@ -9,10 +9,10 @@
     </div>
     <div v-if="!(userName === '')">
     
-      <user-box :userName="userName"></user-box>
+      <user-box element id='user-box' :userName="userName"></user-box>
     
-      <total-value :totalValue="totalValue"></total-value>
-      <search-box :userName="userName"></search-box>
+      <total-value id='total-value' :totalValue="totalValue"></total-value>
+      <search-box id='search-box' :userName="userName"></search-box>
       <list-of-stocks
         :listOfUserHeldStocks="listOfUserHeldStocks"
       ></list-of-stocks>
@@ -114,17 +114,20 @@ export default {
 <style>
 
 body {
-  background-color: #262629;
-}
+  background-color: #ffffff;
+} 
+
 
 .container {
   display: flex;
   justify-content: center;
-
+  height: 900px;
+  margin: 0;
+  background-color: #262629;
 }
 
 .child {
-  padding: 250px;
+  padding: 50px;
   
 }
 
