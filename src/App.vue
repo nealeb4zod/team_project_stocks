@@ -116,7 +116,7 @@ export default {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  margin-left: 30px;
+  margin-left: 20px;
   display: grid;
   grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
   scroll-padding-top: 15px;
