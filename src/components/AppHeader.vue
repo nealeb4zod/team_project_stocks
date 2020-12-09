@@ -2,11 +2,12 @@
   <div>
     <div id="header">
       <img src="../assets/Investably_logo.svg" alt="" />
+      <h1>investably</h1>
     </div>
     <button
       v-if="!(userName === '')"
       v-on:click="logoutUser"
-      class="submit-button"
+      class="login-out-button"
     >
       Logout
     </button>
@@ -29,8 +30,13 @@ export default {
 <style>
 #header {
   display: flex;
-  flex-flow: row;
+  flex-flow: column;
   justify-content: center;
+  align-items: center;
+}
+#header > h1 {
+  color: #94caf0;
+  padding-bottom: 20px;
 }
 
 img {
@@ -39,7 +45,8 @@ img {
   margin: 40px;
 }
 
-/* #header {
+#app-header {
   background-color: #262629;
-} */
+  justify-content: center;
+}
 </style>

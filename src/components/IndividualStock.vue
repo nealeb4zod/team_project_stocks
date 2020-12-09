@@ -14,7 +14,7 @@
         {{ stock.purchasedPrice }}
       </div>
       <div>
-        {{ stock.date }}
+        {{ stock.date | moment('Do MMM YYYY') }}
       </div>
       <div>
         {{ stock.currentPrice }}

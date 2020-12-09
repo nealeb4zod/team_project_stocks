@@ -12,7 +12,6 @@
     </div>
     <div v-if="!(userName === '')">
       <user-box element id="user-box" :userName="userName"></user-box>
-
       <total-value id="total-value" :totalValue="totalValue"></total-value>
       <search-box id="search-box" :userName="userName"></search-box>
       <list-of-stocks
@@ -120,86 +119,16 @@ export default {
   padding: 0;
 }
 
-#app-header {
-  background-color: #262629;
-  justify-content: center;
-}
-
-.flex-form {
-  display: flex;
-  flex-flow: column;
-  width: 70%;
-}
-
-.flex-form > input {
-  margin: 0;
-}
-#add-user {
-  width: 190px;
-  height: 6px;
-}
-
-.login-form {
-  background: white;
-  color: black;
-  height: 400px;
-  width: 300px;
-  border-radius: 15px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  padding: 25px;
-  text-align: left;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: center;
-}
-
-#user-name {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
 body {
   background-color: rgb(233, 231, 231);
 }
 
 .container {
-  align-items: center;
   justify-content: center;
   display: flex;
-  justify-content: center;
   margin: 0;
   background-color: #262629;
   height: 1000px;
-}
-
-.child {
-  padding: 50px;
-}
-
-.stock-table {
-  /* margin-left: 20px; */
-  display: inline-grid;
-  grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
-  padding-bottom: 15px;
-  padding-top: 15px;
-  padding-left: 20px;
-  background-color: white;
-}
-.stock-header {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  padding-top: 10px;
-  padding-left: 20px;
-  display: grid;
-  grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
-  /* scroll-padding-top: 15px; */
-  padding-bottom: 10px;
-  border-bottom: 1px solid black;
-  background-color: white;
-  padding-bottom: 15px;
-  margin-top: 30px;
 }
 
 .top-info {
@@ -207,8 +136,12 @@ body {
   background-color: lightgrey;
 }
 
-#user-box {
-  padding-bottom: 10px;
+.login-out-button {
+  height: 30px;
+  width: 70px;
+  float: right;
+  margin-top: 7px;
+  margin-right: 15px;
 }
 
 footer {
@@ -220,22 +153,5 @@ footer {
   left: 0;
 
   flex: none;
-}
-
-.stock-table:hover {
-  font-size: 16.5px;
-  text-decoration: bold;
-  display: grid;
-  grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
-}
-.submit-button {
-  height: 30px;
-  width: 70px;
-  float: right;
-  margin-top: 7px;
-  margin-right: 15px;
-}
-.stock {
-  padding-bottom: 30px;
 }
 </style>

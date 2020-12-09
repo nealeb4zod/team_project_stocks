@@ -9,7 +9,7 @@
           user
         }}</option>
       </select>
-      <input type="submit" class="submit-button" value="Login" />
+      <input type="submit" class="login-out-button" value="Login" />
     </form>
   </div>
 </template>
@@ -32,4 +32,35 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.flex-form {
+  display: flex;
+  flex-flow: column;
+  width: 70%;
+}
+
+.flex-form > input {
+  margin: 0;
+}
+
+.login-form {
+  margin-top: 100px;
+  background: white;
+  color: black;
+  height: 400px;
+  width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 25px;
+  text-align: left;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#user-name {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+</style>
