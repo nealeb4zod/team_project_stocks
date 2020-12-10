@@ -11,16 +11,16 @@
         {{ stock.quantity }}
       </div>
       <div>
-        {{ stock.purchasedPrice | toDollar}}
+        {{ stock.purchasedPrice | toDollar }}
       </div>
       <div>
         {{ stock.date | moment('Do MMM YYYY') }}
       </div>
       <div>
-        {{ stock.currentPrice | toDollar}}
+        {{ stock.currentPrice | toDollar }}
       </div>
       <div>
-        {{ (100 * stockValue - ((100 * stockValue) % 1)) / 100 | toDollar}}
+        {{ ((100 * stockValue - ((100 * stockValue) % 1)) / 100) | toDollar }}
       </div>
       <div>
         <button v-on:click="handleClick">
@@ -37,7 +37,7 @@
 
 <script>
 import IndividualStockGraphVue from './IndividualStockGraph.vue';
-import { eventBus } from '../main.js';
+
 export default {
   name: 'individual-stock',
   props: ['stock'],

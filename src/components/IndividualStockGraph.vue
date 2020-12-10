@@ -5,9 +5,6 @@
 </template>
 
 <script>
-// needed imports to make the page responsive
-import { eventBus } from '@/main.js';
-
 export default {
   name: 'individual-stock-graph',
   props: ['stock'],
