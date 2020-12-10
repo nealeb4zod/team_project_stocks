@@ -48,7 +48,7 @@ export default {
 .stock-table {
   margin-left: 20px;
   display: inline-grid;
-  grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
+  grid-template-columns: 100px auto 100px 150px 150px 150px 150px 200px;
   padding-bottom: 15px;
   padding-top: 15px;
 }
@@ -58,7 +58,7 @@ export default {
   top: 0;
   margin-left: 20px;
   display: grid;
-  grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
+  grid-template-columns: 100px auto 100px 150px 150px 150px 150px 200px;
   scroll-padding-top: 15px;
   padding-bottom: 15px;
   border-bottom: 1px solid black;
@@ -72,7 +72,7 @@ export default {
   text-decoration: bold;
   margin-left: 20px;
   display: grid;
-  grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
+  grid-template-columns: 100px auto 100px 150px 150px 150px 150px 200px;
 }
 
 .stock {
