@@ -61,6 +61,7 @@ export default {
   padding-left: 20px;
   display: grid;
   grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
+  scroll-padding-top: 15px;
   padding-bottom: 10px;
   border-bottom: 1px solid black;
   background-color: white;
