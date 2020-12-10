@@ -46,12 +46,11 @@ export default {
 
 <style>
 .stock-table {
-  display: grid;
+  margin-left: 20px;
+  display: inline-grid;
   grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
   padding-bottom: 15px;
   padding-top: 15px;
-  padding-left: 20px;
-  background-color: white;
 }
 .stock-header {
   position: -webkit-sticky;
@@ -67,11 +66,16 @@ export default {
   padding-bottom: 15px;
   margin-top: 30px;
 }
-
 .stock-table:hover {
-  font-size: 16.5px;
+  color: blue;
+  font-size: 20px;
   text-decoration: bold;
+  margin-left: 20px;
   display: grid;
   grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
+}
+
+.stock {
+  padding-bottom: 30px;
 }
 </style>
