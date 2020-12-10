@@ -11,16 +11,16 @@
         {{ stock.quantity }}
       </div>
       <div>
-        {{ stock.purchasedPrice }}
+        {{ stock.purchasedPrice | toDollar}}
       </div>
       <div>
         {{ stock.date | moment('Do MMM YYYY') }}
       </div>
       <div>
-        {{ stock.currentPrice }}
+        {{ stock.currentPrice | toDollar}}
       </div>
       <div>
-        {{ (100 * stockValue - ((100 * stockValue) % 1)) / 100 }}
+        {{ (100 * stockValue - ((100 * stockValue) % 1)) / 100 | toDollar}}
       </div>
       <div>
         <button v-on:click="handleClick">
