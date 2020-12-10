@@ -67,7 +67,7 @@ export default {
   margin-top: 30px;
 }
 .stock-table:hover {
-  color: #94caf0;
+  color: #1b5874;
   font-size: 16.5px;
   text-decoration: bold;
   margin-left: 20px;
