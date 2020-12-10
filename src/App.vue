@@ -144,7 +144,7 @@ body {
   margin-right: 15px;
 }
 
-footer {
+/* footer {
   background-color: #262629;
   width: 100%;
   height: 166px;
@@ -153,5 +153,5 @@ footer {
   left: 0;
 
   flex: none;
-}
+} */
 </style>
