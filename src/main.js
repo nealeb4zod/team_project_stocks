@@ -6,10 +6,16 @@ Vue.use(HighchartsVue);
 
 Vue.config.productionTip = false;
 
+Vue.filter('toDollar', function(value) {
+  return `$${value}`;
+});
+
 export const eventBus = new Vue();
 
 import VueAutosuggest from 'vue-autosuggest';
 Vue.use(VueAutosuggest);
+
+Vue.use(require('vue-moment'));
 
 new Vue({
   render: (h) => h(App),

@@ -1,22 +1,29 @@
 <template>
   <div>
-    <app-header :userName="userName"></app-header>
-    <login-box :userList="userList" v-if="userName === ''"></login-box>
+    <header>
+      <app-header id="app-header" :userName="userName"></app-header>
+    </header>
+    <div v-if="userName === ''" class="container">
+      <login-box
+        element
+        :userList="userList"
+        v-if="userName === ''"
+      ></login-box>
+    </div>
     <div v-if="!(userName === '')">
-      <user-box :userName="userName"></user-box>
-      <total-value :totalValue="totalValue"></total-value>
-      <graph-total-value></graph-total-value>
-      <search-box :userName="userName"></search-box>
+      <user-box element id="user-box" :userName="userName"></user-box>
+      <total-value id="total-value" :totalValue="totalValue"></total-value>
+      <search-box id="search-box" :userName="userName"></search-box>
       <list-of-stocks
         :listOfUserHeldStocks="listOfUserHeldStocks"
       ></list-of-stocks>
     </div>
+    <footer></footer>
   </div>
 </template>
 
 <script>
 import AppHeaderVue from './components/AppHeader.vue';
-import GraphTotalValueVue from './components/GraphTotalValue.vue';
 import ListOfStocksVue from './components/ListOfStocks.vue';
 import LoginBoxVue from './components/LoginBox.vue';
 import SearchBoxVue from './components/SearchBox.vue';
@@ -30,7 +37,6 @@ export default {
   name: 'app',
   components: {
     'app-header': AppHeaderVue,
-    'graph-total-value': GraphTotalValueVue,
     'list-of-stocks': ListOfStocksVue,
     'search-box': SearchBoxVue,
     'total-value': TotalValueVue,
@@ -58,7 +64,7 @@ export default {
       });
     },
     getStockQuote(symbol) {
-      let url = `http://localhost:3000/iex-data/quote/${symbol}`;
+      let url = `${process.env.VUE_APP_API_URL}/iex-data/quote/${symbol}`;
       return fetch(url).then((res) => {
         return res.json();
       });
@@ -79,7 +85,6 @@ export default {
       StocksService.postStock(selectedStock).then((res) => {});
       this.updateStockList(this.listOfUserHeldStocks, selectedStock);
     });
-
     eventBus.$on('login-user', (selectedUser) => {
       this.userName = selectedUser;
       this.fetchStocks(this.userName);
@@ -89,6 +94,7 @@ export default {
       this.listOfUserHeldStocks = [];
     });
   },
+
   computed: {
     totalValue() {
       let totalValueOfStock = 0;
@@ -107,9 +113,45 @@ export default {
 </script>
 
 <style>
-.stock-table {
-  margin-left: 20px;
-  display: grid;
-  grid-template-columns: 100px 200px 100px 200px 200px 200px 200px 200px;
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
 }
+
+body {
+  background-color: rgb(233, 231, 231);
+}
+
+.container {
+  justify-content: center;
+  display: flex;
+  margin: 0;
+  background-color: #262629;
+  height: 1000px;
+}
+
+.top-info {
+  padding-left: 20px;
+  background-color: lightgrey;
+}
+
+.login-out-button {
+  height: 30px;
+  width: 70px;
+  float: right;
+  margin-top: 7px;
+  margin-right: 15px;
+}
+
+/* footer {
+  background-color: #262629;
+  width: 100%;
+  height: 166px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+  flex: none;
+} */
 </style>

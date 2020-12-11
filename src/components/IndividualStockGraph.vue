@@ -5,18 +5,11 @@
 </template>
 
 <script>
-// needed imports to make the page responsive
-import { eventBus } from '@/main.js';
-// import StockService from '@/services/StockService.js'
-
 export default {
   name: 'individual-stock-graph',
   props: ['stock'],
   data() {
     return {
-      // title: this.stock.symbol,
-      // closeValues: [],
-
       stockOptions: {
         rangeSelector: {
           selected: 1,
@@ -30,16 +23,24 @@ export default {
           },
         },
         xAxis: {
+          categories: [],
           title: {
-            text: 'Working days from today',
+            text: 'Date',
           },
         },
+        legend: {
+          title: {
+            text: 'Stock',
+          },
+        },
+
         series: [
           {
             symbol: this.stock.symbol,
             data: [],
-            pointStart: -18,
+            pointStart: 0,
             pointInterval: 1,
+            name: this.stock.name,
             tooltip: {
               valueDecimals: 1,
             },
@@ -54,13 +55,18 @@ export default {
   },
   methods: {
     getStockQuote(symbol) {
-      let url = `http://localhost:3000/iex-data/chart/${symbol}`;
+      let url = `${process.env.VUE_APP_API_URL}/iex-data/chart/${symbol}`;
       fetch(url)
         .then((res) => {
           return res.json();
         })
         .then((data) => {
-          this.stockOptions.series[0].data = [...data];
+          this.stockOptions.series[0].data = data.map((filteredData) => {
+            return filteredData.closeValue;
+          });
+          this.stockOptions.xAxis.categories = data.map((filteredData) => {
+            return filteredData.closeValueDate;
+          });
         });
     },
   },

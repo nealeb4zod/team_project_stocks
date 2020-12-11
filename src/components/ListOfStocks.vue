@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="stock-table">
+    <div class="stock-header">
       <div>
         Symbol:
       </div>
@@ -41,12 +41,41 @@ export default {
   components: {
     'individual-stock': IndividualStockVue,
   },
-  data() {
-    return{
-      blah: true
-    }
-  }
 };
 </script>
 
-<style></style>
+<style>
+.stock-table {
+  margin-left: 20px;
+  display: inline-grid;
+  grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
+  padding-bottom: 15px;
+  padding-top: 15px;
+}
+.stock-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  margin-left: 20px;
+  display: grid;
+  grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
+  scroll-padding-top: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid black;
+  background-color: white;
+  padding-bottom: 15px;
+  margin-top: 30px;
+}
+.stock-table:hover {
+  color: #1b5874;
+  font-size: 16.5px;
+  text-decoration: bold;
+  margin-left: 20px;
+  display: grid;
+  grid-template-columns: 100px 250px 100px 150px 150px 150px 150px 200px;
+}
+
+.stock {
+  padding-bottom: 30px;
+}
+</style>

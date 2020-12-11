@@ -113,7 +113,6 @@ export default {
       stockObject.quantity = this.quantity;
       stockObject.purchasedPrice = this.purchasedPrice;
       stockObject.date = this.date;
-      console.log(stockObject);
       StocksService.postStock(this.userName, stockObject).then(() => {
         eventBus.$emit('add-stock-to-user-list', stockObject);
         this.selected = this.query = '';
@@ -121,7 +120,7 @@ export default {
       });
     },
     fetchSymbols() {
-      let url = `https://cloud.iexapis.com/stable/ref-data/symbols?token=${process.env.VUE_APP_IEX_API_TOKEN}`;
+      let url = `${process.env.VUE_APP_API_URL}/iex-data/symbols`;
 
       fetch(url)
         .then((res) => {
@@ -144,19 +143,19 @@ export default {
 <style>
 #quantity {
   padding: 0px;
-  height: 31px;
+  height: 36px;
   display: block;
-  width: 100px;
+  width: 80px;
 }
 #date {
   padding: 0px;
-  height: 31px;
+  height: 36px;
   display: block;
   width: 150px;
 }
 #add-stock {
   display: block;
-  height: 35px;
+  height: 40px;
   width: 100px;
 }
 
@@ -168,14 +167,13 @@ export default {
 }
 
 input {
-  width: 260px;
+  width: 400px;
   padding: 0.5rem;
   margin-left: 10px;
 }
 
 ul {
   width: 100%;
-  color: #7de38d;
   list-style: none;
   margin: 0;
   padding: 0.5rem 0 0.5rem 0;
@@ -204,6 +202,6 @@ li:hover {
   width: 150px;
 }
 .autosuggest__results-item--highlighted {
-  background-color: rgba(51, 217, 178, 0.2);
+  background-color: rgb(148, 202, 240);
 }
 </style>

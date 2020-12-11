@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <h2>Logged in User: {{ userName }}</h2>
+  <div class="top-info">
+    <h2>Welcome, {{ userName }}.</h2>
   </div>
 </template>
 
@@ -11,4 +11,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+#user-box {
+  padding-bottom: 10px;
+}
+</style>

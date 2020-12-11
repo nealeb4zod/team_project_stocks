@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:3000/api/stocks/';
+const baseURL = `${process.env.VUE_APP_API_URL}/api/stocks/`;
 
 export default {
   getUsers() {
